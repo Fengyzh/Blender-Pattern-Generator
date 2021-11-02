@@ -31,7 +31,6 @@ class myProperties(bpy.types.PropertyGroup):
 def add_shapes(context):
     
     bpy.ops.mesh.primitive_cube_add()
-    #bpy.ops.mesh.primitive_uv_sphere_add()
 
 
 def add_sphere(context):
@@ -44,9 +43,6 @@ def deleteObj(context):
         if o.select_get() == True:
             bpy.data.objects.remove(o, do_unlink=True)
     
-    #object_to_delete = bpy.data.objects['Cube']
-    #bpy.data.objects.remove(object_to_delete, do_unlink=True)
-
 
 
 
@@ -56,7 +52,6 @@ def Duplicate_ObjectZ(context, amount, spacing, Min, bool):
     
     for i in range (0, amount-1):
         new_obj = bpy.context.active_object.copy()
-        #new_obj.data = bpy.context.active_object.data.copy()
         new_obj.animation_data_clear()
         print("New: ", new_obj.name)
         
@@ -76,7 +71,6 @@ def Duplicate_ObjectY(context, amount, spacing, Min, bool):
     
     for i in range (0, amount-1):
         new_obj = bpy.context.active_object.copy()
-        #new_obj.data = bpy.context.active_object.data.copy()
         new_obj.animation_data_clear()
         print("New: ", new_obj.name)
         
@@ -99,18 +93,12 @@ def Duplicate_Object(context, amount, spacing, Min, bool):
     
     if Min >= spacing:
         return
-    
-    #spacing = random.randint(0, spacing)
-    
-    
     if bpy.context.active_object == None:
         bpy.props.RemoveProperty(copyObject)
     
     
     for i in range (0, amount):
-        #spacing = random.randint(1, spacing)
         new_obj = bpy.context.active_object.copy()
-        #new_obj.data = bpy.context.active_object.data.copy()
         new_obj.animation_data_clear()
         print("New: ", new_obj.name)
         
@@ -124,7 +112,6 @@ def Duplicate_Object(context, amount, spacing, Min, bool):
         
         context.view_layer.objects.active = new_obj
     bpy.data.objects.remove(new_obj, do_unlink=True)
-    #bpy.ops.mesh.primitive_uv_sphere_add()
 
 
     
@@ -132,8 +119,6 @@ def Duplicate_Object(context, amount, spacing, Min, bool):
 
 def StairGen(context, spacing, amount, direction):
     C = bpy.context
-    
-    #new = bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(-3.98091, -4.18743, 3.91535)})
     
     for i in range(amount):
         if direction == "OP1":
@@ -207,51 +192,9 @@ def DiamondGen(context, radius, amount):
         Left_Bottom.location.x -= step*i
         bpy.data.collections["Diamond Gen"].objects.link(Left_Bottom)
         
-        
-        
-        
-        
-        
-        #Left_Point = bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(radius, radius, 0)})
-        #Right_Point = bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(radius, -radius, 0)})
-        #End_Point = bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={"linked":False, "mode":'TRANSLATION'}, TRANSFORM_OT_translate={"value":(-radius, -radius, 0)})
-    
+
     print("After: ", ob)
 
-
-
-    
-    #bpy.context.scene.objects.link(new)
-    
-    #new = bpy.context.act_objects[0]
-    
-    #new_obj = bpy.data.objects.new('new_obj', new) 
-    #bpy.context.scene.objects.link(new_obj)
-    
-    
-'''    
-    for i in range(0, amount):
-        new_obj = bpy.context.active_object.copy()
-        #new_obj = bpy.context.selected_objects.copy()
-        #otherHalf = bpy.context.active_object.copy()
-      
-        new_obj.animation_data_clear()
-        #otherHalf.animation_data_clear()
-
-        new_obj.location.x += radius/amount
-        new_obj.location.y += radius/amount
-            
-        #otherHalf.location.x += radius/amount
-        #otherHalf.location.y -= radius/amount
-
-        C.collection.objects.link(new_obj)
-        #C.collection.objects.link(otherHalf)
-        
-        
-        #bpy.data.objects[new_obj.name].select_set(True)
-        
-        context.view_layer.objects.active = new_obj
-'''
 
 
 def SquareFrameY(context, amount):
@@ -262,7 +205,6 @@ def SquareFrameY(context, amount):
     count = 1
     for i in range (0, amount-1):
         new_obj = bpy.context.active_object.copy()
-        #new_obj.data = bpy.context.active_object.data.copy()
         new_obj.animation_data_clear()
         print("New: ", new_obj.name)
         
@@ -413,7 +355,7 @@ class Triangle(bpy.types.Operator):
 
 class LayoutDemoPanel(bpy.types.Panel):
     """Creates a Panel in the scene context of the properties editor"""
-    bl_label = "Quick Object Adder"
+    bl_label = "Pattern Generator"
     bl_idname = "SCENE_PT_layout"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
@@ -461,7 +403,6 @@ class LayoutDemoPanel(bpy.types.Panel):
         layout.prop(my_tool, "Tri_equl", text="Equal")
         
         
-        #layout.operator("object.duplicate")
 
 
 
